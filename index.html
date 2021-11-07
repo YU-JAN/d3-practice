@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body{
+            background-color: #ccc;
+            width: 100%;
+        }
+        #chart{
+            background-color: #ccc;
+            width: 1000px;
+            margin: 50px auto;
+            height: 500px;
+            border: solid 0.8px #000;
+        }
+        svg{
+            background-color: #fff;
+        }
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div id="chart"></div>
+    <script type="text/javascript">
+        var width = 1000, height = 500;
+        var svg = d3.select("#chart")
+            .append('svg')
+            .attr("width", width + "px" )
+            .attr('height', height + 'px');
+        
+        // svg.append('rect')
+        //     .attr('x',200)
+        //     .attr('y',200)
+        //     .attr('height',100)
+        //     .attr('width',100)
+        //     .attr('stroke','black')
+        //     .attr('fill', 'white');
+
+        // svg.append('circle')
+        //     .attr('cx',250)
+        //     .attr('cy',250)
+        //     .attr('r',50)
+        //     .attr('stroke', '#964B00')
+        //     .attr('fill', 'white');
+
+        //  svg.append('line')
+        //     .attr('x1',250)
+        //     .attr('y1',200)
+        //     .attr('x2',250)
+        //     .attr('y2',300)
+        //     .attr('stroke', 'red');
+
+        d3.csv('boston-housing.csv').then(function(data){
+            console.log(data);
+            svg.selectAll('.dot')
+                .data(data)
+                .enter()
+                .append('circle')
+                .attr('cx',250)
+                .attr('cy',250)
+                .attr('r',50)
+                .attr('stroke', '#964B00')
+                .attr('fill', 'black');
+        });
+
+    </script>
+</body>
+</html>
